@@ -17,9 +17,11 @@
             theme: {
                 extend: {
                     colors: {
-                        // Custom Light Mode Colors
-                        background: '#f5f2eb', // <--- Your new beige color
+                        background: '#f5f2eb',
                         surface: '#ffffff',
+                    },
+                    screens: {
+                        '3xl': '1800px', // Extra breakpoint for ultra-wide
                     }
                 }
             }
@@ -39,7 +41,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
     <style>
-        /* Clean scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -57,8 +58,16 @@
             background: #475569;
         }
 
-        /* Remove default Vega background to blend with Theme */
+        /* Ensure Vega containers take up space and are responsive */
+        .vega-container {
+            width: 100%;
+            min-height: 350px;
+            display: flex;
+            justify-content: center;
+        }
+
         .vega-embed {
+            width: 100% !important;
             background: transparent !important;
         }
     </style>
@@ -69,54 +78,49 @@
 
     <header
         class="sticky top-0 z-50 w-full backdrop-blur-md bg-background/80 dark:bg-slate-900/80 border-b border-slate-200/60 dark:border-slate-800 transition-colors duration-300">
-        <nav class="w-full px-6 py-4 flex justify-end md:justify-between items-center">
-
-            <div class="flex items-center space-x-6">
-                <div class="hidden md:flex space-x-6 text-sm font-medium">
-                    <a href="#task1" class="hover:text-rose-500 transition-colors">Task 1</a>
-                    <a href="#task2" class="hover:text-emerald-500 transition-colors">Task 2</a>
-                    <a href="#task3" class="hover:text-amber-500 transition-colors">Task 3</a>
-                    <a href="#task4" class="hover:text-indigo-500 transition-colors">Task 4</a>
-                    <a href="#task5" class="hover:text-rose-500 transition-colors">Task 5</a>
-                    <a href="#task6" class="hover:text-rose-500 transition-colors">Task 6</a>
-                    <a href="#task7" class="hover:text-rose-500 transition-colors">Task 7</a>
-                </div>
-
-                <button id="theme-toggle"
-                    class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-slate-800 transition-colors"
-                    onclick="toggleTheme()" aria-label="Toggle Dark Mode">
-                    <svg class="hidden dark:block w-5 h-5 text-yellow-400" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
-                        </path>
-                    </svg>
-                    <svg class="block dark:hidden w-5 h-5 text-slate-700" fill="none" stroke="currentColor"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
-                        </path>
-                    </svg>
-                </button>
+        <nav class="max-w-[1600px] mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="hidden md:flex space-x-6 text-sm font-medium">
+                <a href="#task1" class="hover:text-rose-500 transition-colors">Task 1</a>
+                <a href="#task2" class="hover:text-emerald-500 transition-colors">Task 2</a>
+                <a href="#task3" class="hover:text-amber-500 transition-colors">Task 3</a>
+                <a href="#task4" class="hover:text-indigo-500 transition-colors">Task 4</a>
+                <a href="#task5" class="hover:text-rose-500 transition-colors">Task 5</a>
+                <a href="#task6" class="hover:text-rose-500 transition-colors">Task 6</a>
+                <a href="#task7" class="hover:text-rose-500 transition-colors">Task 7</a>
+                <a href="#task8" class="hover:text-rose-500 transition-colors">Task 8</a>
             </div>
+
+            <button id="theme-toggle"
+                class="p-2 rounded-full hover:bg-black/5 dark:hover:bg-slate-800 transition-colors"
+                onclick="toggleTheme()">
+                <svg class="hidden dark:block w-5 h-5 text-yellow-400" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                    </path>
+                </svg>
+                <svg class="block dark:hidden w-5 h-5 text-slate-700" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                    </path>
+                </svg>
+            </button>
         </nav>
     </header>
 
-    <section class="max-w-7xl mx-auto px-6 py-20 md:py-32">
+    <section class="max-w-[1600px] mx-auto px-6 py-20 md:py-32">
         <div class="border-l-4 border-rose-500 pl-6 mb-8">
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
-                Data Visualization Portfolio
-            </h1>
-            <p class="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-light">
-                Automated Data Visualization Course
-            </p>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">Data
+                Visualization Portfolio</h1>
+            <p class="text-xl md:text-2xl text-slate-500 dark:text-slate-400 font-light">Automated Data Visualization
+                Course</p>
         </div>
-
         <div
             class="flex flex-col sm:flex-row sm:items-center text-sm text-slate-600 dark:text-slate-400 space-y-2 sm:space-y-0 sm:space-x-4">
             <p><strong class="text-slate-900 dark:text-slate-200">Mercedes Hernández Ferrer</strong></p>
             <span class="hidden sm:inline text-slate-300">|</span>
-            <p>London School of Economics and Political Science</p>
+            <p>LSE</p>
             <span class="hidden sm:inline text-slate-300">|</span>
             <div class="space-x-2">
                 <a href="https://www.linkedin.com/in/mercedeshf/"
@@ -126,475 +130,106 @@
         </div>
     </section>
 
-    <main class="w-full px-4 md:px-8 pb-20 space-y-32">
+    <main class="max-w-[1600px] mx-auto px-6 pb-20 space-y-32">
 
         <section id="task1" class="scroll-mt-24">
-            <div class="max-w-7xl mx-auto mb-12">
+            <div class="mb-12">
                 <div class="mb-8 border-b border-slate-300/50 dark:border-slate-800 pb-4">
                     <span class="text-rose-500 font-mono text-sm tracking-wider uppercase mb-2 block">Task 1</span>
-                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Hosting. Display charts in your own
-                        site</h2>
-                </div>
-                <div class="prose dark:prose-invert text-slate-600 dark:text-slate-300 max-w-none">
-                    <p class="text-lg">
-                        These first two charts are from the <strong class="text-slate-900 dark:text-white">Economics
-                            Observatory</strong> (economicsobservatory.com), exploring GDP and life expectancy trends.
-                    </p>
+                    <h2 class="text-3xl font-bold">Hosting Charts</h2>
                 </div>
             </div>
-
-            <div class="space-y-16 w-full">
-                <div class="group">
-                    <div class="max-w-7xl mx-auto flex items-baseline space-x-3 mb-4">
-                        <span
-                            class="bg-rose-100/50 border border-rose-200 text-rose-800 dark:bg-rose-900/30 dark:border-transparent dark:text-rose-400 text-xs font-bold px-2 py-1 rounded">01</span>
-                        <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100">Trends in Life Expectancy
-                            and Fertility</h3>
-                    </div>
-                    <div class="w-full flex justify-center overflow-x-auto">
-                        <figure id="Location1"></figure>
-                    </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold">Life Expectancy Trends</h3>
+                    <div id="Location1" class="vega-container"></div>
                 </div>
-
-                <div class="group">
-                    <div class="max-w-7xl mx-auto flex items-baseline space-x-3 mb-4">
-                        <span
-                            class="bg-rose-100/50 border border-rose-200 text-rose-800 dark:bg-rose-900/30 dark:border-transparent dark:text-rose-400 text-xs font-bold px-2 py-1 rounded">02</span>
-                        <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100">GDP and Life Expectancy
-                        </h3>
-                    </div>
-                    <div class="w-full flex justify-center overflow-x-auto">
-                        <figure id="Location2"></figure>
-                    </div>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold">GDP vs Life Expectancy</h3>
+                    <div id="Location2" class="vega-container"></div>
                 </div>
             </div>
         </section>
 
         <section id="task2" class="scroll-mt-24">
-            <div class="max-w-7xl mx-auto mb-12">
+            <div class="mb-12">
                 <div class="mb-8 border-b border-slate-300/50 dark:border-slate-800 pb-4">
                     <span class="text-emerald-500 font-mono text-sm tracking-wider uppercase mb-2 block">Task 2</span>
-                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Building. Create your own
-                        visualizations</h2>
-                </div>
-                <div class="prose dark:prose-invert text-slate-600 dark:text-slate-300 max-w-none">
-                    <p class="text-lg">
-                        These charts were created using the <strong class="text-slate-900 dark:text-white">Economics
-                            Observatory "create" tool</strong>.
-                    </p>
+                    <h2 class="text-3xl font-bold">Building Visualizations</h2>
                 </div>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 w-full max-w-[1800px] mx-auto">
-                <div class="flex flex-col items-center">
-                    <div class="w-full max-w-md">
-                        <div class="flex items-baseline space-x-3 mb-2">
-                            <span
-                                class="bg-emerald-100/50 border border-emerald-200 text-emerald-800 dark:bg-emerald-900/30 dark:border-transparent dark:text-emerald-400 text-xs font-bold px-2 py-1 rounded">01</span>
-                            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100">Nuclear Power in Japan
-                            </h3>
-                        </div>
-                        <p class="text-slate-600 dark:text-slate-400 mb-6 text-sm">
-                            After the Fukushima nuclear disaster, Japan almost stopped production of nuclear energy.
-                        </p>
-                    </div>
-                    <div class="w-full flex justify-center overflow-x-auto">
-                        <figure id="Location3"></figure>
-                    </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold">Nuclear Power in Japan</h3>
+                    <div id="Location3" class="vega-container"></div>
                 </div>
-
-                <div class="flex flex-col items-center">
-                    <div class="w-full max-w-md">
-                        <div class="flex items-baseline space-x-3 mb-2">
-                            <span
-                                class="bg-emerald-100/50 border border-emerald-200 text-emerald-800 dark:bg-emerald-900/30 dark:border-transparent dark:text-emerald-400 text-xs font-bold px-2 py-1 rounded">02</span>
-                            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100">Ukrainian Refugees</h3>
-                        </div>
-                        <p class="text-slate-600 dark:text-slate-400 mb-6 text-sm">
-                            Following Russia's invasion of Ukraine, there was a dramatic spike in refugees.
-                        </p>
-                    </div>
-                    <div class="w-full flex justify-center overflow-x-auto">
-                        <figure id="Location4"></figure>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="task3" class="scroll-mt-24">
-            <div class="max-w-7xl mx-auto mb-12">
-                <div class="mb-8 border-b border-slate-300/50 dark:border-slate-800 pb-4">
-                    <span class="text-amber-500 font-mono text-sm tracking-wider uppercase mb-2 block">Task 3</span>
-                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Debate. Use a visualisation in policy
-                        commentary</h2>
-                </div>
-                <div
-                    class="bg-white/50 dark:bg-slate-800/50 p-6 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
-                    <p class="text-lg text-slate-700 dark:text-slate-300 font-medium">
-                        Policy debate: Has Mexico improved public security overall, or do falling property crimes mask
-                        the persistence of high impact violent crime?
-                    </p>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mb-12 w-full max-w-[1800px] mx-auto">
-                <div class="flex flex-col items-center">
-                    <div class="flex items-center space-x-3 mb-4 w-full max-w-md">
-                        <div
-                            class="w-8 h-8 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-sm">
-                            A</div>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Theft Crimes</h3>
-                    </div>
-                    <div class="w-full flex justify-center overflow-x-auto">
-                        <figure id="Location5"></figure>
-                    </div>
-                </div>
-
-                <div class="flex flex-col items-center">
-                    <div class="flex items-center space-x-3 mb-4 w-full max-w-md">
-                        <div
-                            class="w-8 h-8 rounded-full bg-rose-500 text-white flex items-center justify-center font-bold text-sm">
-                            B</div>
-                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">'High Impact' Crime Trends</h3>
-                    </div>
-                    <div class="w-full flex justify-center overflow-x-auto">
-                        <figure id="Location6"></figure>
-                    </div>
-                </div>
-            </div>
-
-            <div class="max-w-7xl mx-auto border-l-4 border-slate-800 dark:border-slate-200 pl-6 py-2">
-                <h3 class="text-lg font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-2">Analysis</h3>
-                <p class="text-slate-600 dark:text-slate-300 leading-relaxed">
-                    Theft and kidnapping declined below 2015 levels, but homicide, extortion, and feminicide remain
-                    elevated, challenging claims of broad improvements in public security.
-                </p>
-            </div>
-        </section>
-
-        <section id="task4" class="scroll-mt-24">
-            <div class="max-w-7xl mx-auto mb-12">
-                <div class="mb-8 border-b border-slate-300/50 dark:border-slate-800 pb-4">
-                    <span class="text-indigo-500 font-mono text-sm tracking-wider uppercase mb-2 block">Task 4</span>
-                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Replication. Re-create, then improve
-                    </h2>
-                </div>
-                <p class="text-lg text-slate-600 dark:text-slate-300">
-                    The original chart I want to improve is the Mexican national statistics office (INEGI) chart on
-                    homicides per 100,000 inhabitants. This information is crucial and is very hard to find in a
-                    dataframe format, so I'll make a new, nicer chart with the information displayed.
-                </p>
-            </div>
-
-            <div class="space-y-16 w-full">
-                <div>
-                    <div class="max-w-7xl mx-auto">
-                        <div class="flex items-baseline space-x-3 mb-2">
-                            <span
-                                class="bg-indigo-100/50 border border-indigo-200 text-indigo-800 dark:bg-indigo-900/30 dark:border-transparent dark:text-indigo-400 text-xs font-bold px-2 py-1 rounded">01</span>
-                            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Original INEGI Chart</h3>
-                        </div>
-                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">
-                            Source: <a
-                                href="https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/edr/DH2024_RR_Ene-dic.pdf"
-                                target="_blank" class="text-indigo-500 hover:underline">INEGI</a>
-                        </p>
-                    </div>
-                    <div
-                        class="max-w-3xl mx-auto border border-slate-200 dark:border-slate-700 p-2 rounded bg-white shadow-sm">
-                        <img src="Tasa_bruta_homicidios_100milhabitantes_mex.png" alt="Original INEGI homicides chart"
-                            class="w-full h-auto">
-                    </div>
-                </div>
-
-                <div>
-                    <div class="max-w-7xl mx-auto mb-6">
-                        <div class="flex items-baseline space-x-3 mb-2">
-                            <span
-                                class="bg-indigo-100/50 border border-indigo-200 text-indigo-800 dark:bg-indigo-900/30 dark:border-transparent dark:text-indigo-400 text-xs font-bold px-2 py-1 rounded">02</span>
-                            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Replicated Version</h3>
-                        </div>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">Exact replication of the INEGI data
-                            visualization.</p>
-                    </div>
-                    <div class="w-full flex justify-center overflow-x-auto">
-                        <figure id="Location7"></figure>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="max-w-7xl mx-auto mb-6">
-                        <div class="flex items-baseline space-x-3 mb-2">
-                            <span
-                                class="bg-indigo-100/50 border border-indigo-200 text-indigo-800 dark:bg-indigo-900/30 dark:border-transparent dark:text-indigo-400 text-xs font-bold px-2 py-1 rounded">03</span>
-                            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Improved Version</h3>
-                        </div>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">Enhanced visualization with improved
-                            clarity and design.</p>
-                    </div>
-
-                    <div class="w-full mb-8 flex justify-center overflow-x-auto">
-                        <figure id="Location8"></figure>
-                    </div>
-
-                    <div
-                        class="max-w-7xl mx-auto bg-indigo-50/50 dark:bg-indigo-900/20 p-6 rounded-lg border-l-4 border-indigo-500 shadow-sm">
-                        <h4 class="font-bold text-indigo-900 dark:text-indigo-100 mb-2">Commentary</h4>
-                        <ul class="list-disc list-inside text-indigo-800 dark:text-indigo-200 space-y-1">
-                            <li>The improved version enhances readability and visual hierarchy.</li>
-                            <li>Data points are more clearly distinguished.</li>
-                            <li>The temporal trends are easier to interpret.</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="task5" class="scroll-mt-24">
-            <div class="max-w-7xl mx-auto mb-12">
-                <div class="mb-8 border-b border-slate-300/50 dark:border-slate-800 pb-4">
-                    <span class="text-rose-500 font-mono text-sm tracking-wider uppercase mb-2 block">Task 5</span>
-                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Accessing data: Scraper and API</h2>
-                </div>
-            </div>
-
-            <div class="space-y-16 w-full">
-                <div>
-                    <div class="max-w-7xl mx-auto mb-6">
-                        <div class="flex items-baseline space-x-3 mb-2">
-                            <span
-                                class="bg-rose-100/50 border border-rose-200 text-rose-800 dark:bg-rose-900/30 dark:border-transparent dark:text-rose-400 text-xs font-bold px-2 py-1 rounded">01</span>
-                            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">World Bank Data API</h3>
-                        </div>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">Homicides per 100,000 inhabitants,
-                            2010-2023.</p>
-                    </div>
-
-                    <div class="w-full mb-6 flex justify-center overflow-x-auto">
-                        <figure id="Location9"></figure>
-                    </div>
-
-                    <div
-                        class="max-w-7xl mx-auto text-sm text-slate-600 dark:text-slate-400 bg-white/50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4 rounded font-mono break-all shadow-sm">
-                        <p class="mb-2"><strong class="text-slate-900 dark:text-slate-200">Base URL:</strong>
-                            https://api.worldbank.org/v2/country/</p>
-                        <p class="mb-2"><strong class="text-slate-900 dark:text-slate-200">Elements:</strong>
-                            The API URL appends a list of specific country/region codes separated by semicolons
-                            (wld;mex;col;gbr;chl;bra;lcn) followed by the specific indicator code (VC.IHR.PSRC.P5, which
-                            represents Intentional Homicides per 100,000 people). It uses query parameters to filter the
-                            date range (2010:2023), set the response format to JSON, and increase the per_page limit to
-                            200 to ensure all data points are captured.
-                        </p>
-                        <p class="mb-2"><strong class="text-slate-900 dark:text-slate-200">Parameters:</strong>
-                            Query parameters filter the date range (2010:2023), set the response format to JSON, and
-                            increase the per_page limit to 200.
-                        </p>
-                        <p class="mb-2"><strong class="text-slate-900 dark:text-slate-200">Full URL:</strong>
-                            https://api.worldbank.org/v2/country/wld;mex;col;gbr;chl;bra;lcn/indicator/VC.IHR.PSRC.P5?date=2010:2023&format=json&per_page=200
-                        </p>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="max-w-7xl mx-auto mb-6">
-                        <div class="flex items-baseline space-x-3 mb-2">
-                            <span
-                                class="bg-rose-100/50 border border-rose-200 text-rose-800 dark:bg-rose-900/30 dark:border-transparent dark:text-rose-400 text-xs font-bold px-2 py-1 rounded">02</span>
-                            <h3 class="text-xl font-semibold text-slate-900 dark:text-white">Web Scraper: Mexican State
-                                Governors, 2025</h3>
-                        </div>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">Data collected through web scraping on
-                            Wikipedia.</p>
-                    </div>
-
-                    <div class="w-full mb-6 flex justify-center overflow-x-auto">
-                        <figure id="Location10"></figure>
-                    </div>
-
-                    <div
-                        class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between bg-rose-50/50 dark:bg-rose-900/10 p-4 rounded-lg border border-rose-200 dark:border-rose-900/20 shadow-sm">
-                        <div class="mb-4 md:mb-0">
-                            <h4 class="font-bold text-rose-900 dark:text-rose-200 mb-1">Commentary</h4>
-                            <p class="text-sm text-rose-800 dark:text-rose-300">I scraped a Wikipedia table of governors
-                                by party.</p>
-                            <p class="text-sm text-rose-800 dark:text-rose-300">The main challenge was matching parties
-                                embedded as images rather than text.</p>
-                        </div>
-                        <a href="https://colab.research.google.com/drive/1CccrMuQCj1JTUFV0JJOQkeV_goSw7cM9?usp=sharing"
-                            target="_blank"
-                            class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700 transition-colors shadow-sm">
-                            View Colab Notebook
-                        </a>
-                    </div>
+                <div class="space-y-4">
+                    <h3 class="text-xl font-semibold">Ukrainian Refugees</h3>
+                    <div id="Location4" class="vega-container"></div>
                 </div>
             </div>
         </section>
 
         <section id="task6" class="scroll-mt-24">
-            <div class="max-w-7xl mx-auto mb-12">
-                <div class="mb-8 border-b border-slate-300/50 dark:border-slate-800 pb-4">
-                    <span class="text-rose-500 font-mono text-sm tracking-wider uppercase mb-2 block">Task 6</span>
-                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Loops. Build a dashboard</h2>
-                </div>
-                <p class="text-lg text-slate-600 dark:text-slate-300">
-                    Homicides per 100,000 people, LATAM comparison, 2010-2023, accessed via the World Bank Data API.
-                </p>
+            <div class="mb-12 border-b border-slate-300/50 dark:border-slate-800 pb-4">
+                <span class="text-rose-500 font-mono text-sm tracking-wider uppercase mb-2 block">Task 6</span>
+                <h2 class="text-3xl font-bold">Homicide Trends Dashboard</h2>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 w-full max-w-[1800px] mx-auto">
-                <div class="w-full flex justify-center overflow-x-auto">
-                    <figure id="Location11"></figure>
-                </div>
-                <div class="w-full flex justify-center overflow-x-auto">
-                    <figure id="Location12"></figure>
-                </div>
-                <div class="w-full flex justify-center overflow-x-auto">
-                    <figure id="Location13"></figure>
-                </div>
-                <div class="w-full flex justify-center overflow-x-auto">
-                    <figure id="Location14"></figure>
-                </div>
-                <div class="w-full flex justify-center overflow-x-auto">
-                    <figure id="Location15"></figure>
-                </div>
-                <div class="w-full flex justify-center overflow-x-auto">
-                    <figure id="Location16"></figure>
-                </div>
-            </div>
-
-            <div
-                class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between bg-rose-50/50 dark:bg-rose-900/10 p-4 rounded-lg border border-rose-200 dark:border-rose-900/20 shadow-sm">
-                <div class="mb-4 md:mb-0">
-                    <p class="text-sm text-rose-800 dark:text-rose-300">These charts were created through an API loop
-                        that can be found </p>
-                </div>
-                <a href="https://colab.research.google.com/drive/1VSKioduOGoPHN4YuCWOBHaZABTnGKTZE?usp=sharing"
-                    target="_blank"
-                    class="inline-flex items-center justify-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-rose-600 hover:bg-rose-700 transition-colors shadow-sm">
-                    View Colab Notebook
-                </a>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 3xl:grid-cols-4 gap-6">
+                <div id="Location11" class="vega-container !min-h-[250px]"></div>
+                <div id="Location12" class="vega-container !min-h-[250px]"></div>
+                <div id="Location13" class="vega-container !min-h-[250px]"></div>
+                <div id="Location14" class="vega-container !min-h-[250px]"></div>
+                <div id="Location15" class="vega-container !min-h-[250px]"></div>
+                <div id="Location16" class="vega-container !min-h-[250px]"></div>
             </div>
         </section>
 
         <section id="task7" class="scroll-mt-24">
-            <div class="max-w-7xl mx-auto mb-12">
-                <div class="mb-8 border-b border-slate-300/50 dark:border-slate-800 pb-4">
-                    <span class="text-rose-500 font-mono text-sm tracking-wider uppercase mb-2 block">Task 7</span>
-                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white">Maps. Base maps and chloropleths</h2>
-                </div>
+            <div class="mb-12 border-b border-slate-300/50 dark:border-slate-800 pb-4">
+                <span class="text-rose-500 font-mono text-sm tracking-wider uppercase mb-2 block">Task 7</span>
+                <h2 class="text-3xl font-bold">Maps & Chloropleths</h2>
             </div>
-
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full max-w-[1800px] mx-auto">
-                <div class="flex flex-col items-center">
-                    <div class="w-full max-w-md">
-                        <h3 class="text-xl font-semibold mb-2 text-slate-900 dark:text-white">Map of Scotland's Stadiums
-                        </h3>
-                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
-                            Scotland's Stadiums with over 10k capacity (<a
-                                href="https://en.wikipedia.org/wiki/List_of_football_stadiums_in_Scotland"
-                                target="_blank" class="text-rose-500 hover:underline">Wikipedia</a>)
-                        </p>
-                    </div>
-                    <div class="w-full flex justify-center overflow-x-auto">
-                        <figure id="Location17"></figure>
-                    </div>
-                </div>
-
-                <div class="flex flex-col items-center">
-                    <div class="w-full max-w-md">
-                        <h3 class="text-xl font-semibold mb-2 text-slate-900 dark:text-white">Map of Wales Unemployment
-                            Rate</h3>
-                        <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">
-                            Chloropleth of Wales unemployment rate, 2025 (<a
-                                href="https://statswales.gov.wales/Catalogue/Business-Economy-and-Labour-Market/People-and-Work/Unemployment/ILO-Unemployment/ilounemploymentrates-by-welshlocalareas-year"
-                                target="_blank" class="text-rose-500 hover:underline">StatsWales</a>)
-                        </p>
-                    </div>
-                    <div class="w-full flex justify-center overflow-x-auto">
-                        <figure id="Location18"></figure>
-                    </div>
-                </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div id="Location17" class="vega-container"></div>
+                <div id="Location18" class="vega-container"></div>
             </div>
         </section>
 
     </main>
 
     <footer class="bg-background dark:bg-slate-900 border-t border-slate-300/50 dark:border-slate-800 py-12">
-        <div class="max-w-7xl mx-auto px-6 text-center space-y-4">
-            <h4 class="font-bold text-lg text-slate-900 dark:text-white">Mercedes Hernández Ferrer</h4>
-            <p class="text-slate-600 dark:text-slate-400">London School of Economics and Political Science</p>
-            <p class="text-slate-500 dark:text-slate-500 text-sm">Automated Data Visualization Course Portfolio</p>
-            <div class="flex justify-center space-x-6 pt-4">
-                <a href="https://www.linkedin.com/in/mercedeshf/"
-                    class="text-slate-400 hover:text-rose-500 transition-colors">LinkedIn</a>
-                <a href="https://github.com/mercedeshf"
-                    class="text-slate-400 hover:text-rose-500 transition-colors">GitHub</a>
-            </div>
-            <p class="text-slate-400 dark:text-slate-600 text-xs pt-8">© 2025</p>
+        <div class="max-w-[1600px] mx-auto px-6 text-center">
+            <p class="text-slate-500 text-sm">© 2026 Mercedes Hernández Ferrer | LSE</p>
         </div>
     </footer>
 
     <script>
-        function toggleTheme() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.theme = 'light';
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.theme = 'dark';
-            }
-        }
-    </script>
+        // UNIVERSAL RESPONSIVE EMBED FUNCTION
+        const embed = (id, specUrl) => {
+            fetch(specUrl)
+                .then(r => r.json())
+                .then(spec => {
+                    // Force the chart to fill its parent div width
+                    spec.width = "container";
+                    spec.height = 300; // Fixed height often looks better in grids
+                    spec.autosize = { type: "fit", contains: "padding" };
 
-    <script>
-        // Task 1 charts
-        let figure_1_spec = "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/life_expectancy_ecoobs.json";
-        vegaEmbed('#Location1', figure_1_spec);
+                    vegaEmbed(id, spec, {
+                        actions: false,
+                        responsive: true,
+                        renderer: 'svg'
+                    });
+                });
+        };
 
-        let figure_2_spec = "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart2.json";
-        vegaEmbed('#Location2', figure_2_spec);
+        // Task 1 & 2
+        embed('#Location1', "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/life_expectancy_ecoobs.json");
+        embed('#Location2', "https://raw.githubusercontent.com/EconomicsObservatory/courses/main/2/s2_chart2.json");
+        embed('#Location3', "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/nuclear_power_japan.json");
+        embed('#Location4', "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/refugees_ukraine.json");
 
-        // Task 2 charts
-        let figure_3_spec = "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/nuclear_power_japan.json";
-        fetch(figure_3_spec)
-            .then(response => response.json())
-            .then(spec => {
-                spec.width = 400; // Original manual override preserved
-                delete spec.autosize;
-                vegaEmbed('#Location3', spec);
-            });
-
-        let figure_4_spec = "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/refugees_ukraine.json";
-        fetch(figure_4_spec)
-            .then(response => response.json())
-            .then(spec => {
-                spec.width = 400; // Original manual override preserved
-                delete spec.autosize;
-                vegaEmbed('#Location4', spec);
-            });
-
-        // Task 3 charts
-        let figure_5_spec = "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/theft_crimes_mex.json";
-        vegaEmbed('#Location5', figure_5_spec);
-
-        let figure_6_spec = "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/crime_trends_mex.json";
-        vegaEmbed('#Location6', figure_6_spec);
-
-        // Task 4 charts
-        let figure_7_spec = "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/homicides_100k_inegi.json";
-        vegaEmbed('#Location7', figure_7_spec);
-
-        let figure_8_spec = "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/homicides_100k_new.json";
-        vegaEmbed('#Location8', figure_8_spec);
-
-        // Task 5 charts
-        let figure_9_spec = "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/homicides_100k_compare_wb.json";
-        vegaEmbed('#Location9', figure_9_spec);
-
-        let figure_10_spec = "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/mexico_governors_2025.json";
-        vegaEmbed('#Location10', figure_10_spec);
-
-        // Task 6 charts: loops
+        // Dashboard Loop
         const gridcharts = [
             { id: "#Location11", file: "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/homicides_mexico_wb_api.json" },
             { id: "#Location12", file: "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/homicides_colombia_wb_api.json" },
@@ -604,16 +239,16 @@
             { id: "#Location16", file: "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/homicides_world_wb_api.json" }
         ];
 
-        gridcharts.forEach(function (chart) {
-            vegaEmbed(chart.id, chart.file)
-        })
+        gridcharts.forEach(chart => embed(chart.id, chart.file));
 
-        // Task 7 charts
-        let figure_17_spec = "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/scotland_stadiums.json";
-        vegaEmbed('#Location17', figure_17_spec);
+        // Maps
+        embed('#Location17', "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/scotland_stadiums.json");
+        embed('#Location18', "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/wales_unemployment_2025.json");
 
-        let figure_18_spec = "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/wales_unemployment_2025.json";
-        vegaEmbed('#Location18', figure_18_spec);
+        function toggleTheme() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        }
     </script>
 </body>
 

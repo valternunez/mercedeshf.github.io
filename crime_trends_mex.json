@@ -6,212 +6,156 @@
     "subtitle": "Comparing kidnapping, extortion, homicide, and feminicide, 2015-2024",
     "subtitleColor": "#2E294E",
     "fontSize": 18,
-    "font": "sans-serif",
     "anchor": "start",
-    "offset": 20
+    "offset": 30
   },
   "background": "#F5F2EB",
-  "spacing": 20,
-  "vconcat": [
+  "columns": 2,
+  "concat": [
     {
-      "hconcat": [
-        {
-          "width": 280,
-          "height": 200,
-          "title": {"text": "Kidnapping", "fontSize": 14, "color": "#E4007C"},
-          "data": {
-            "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/kidnappingdata_peryear.csv"
-          },
-          "transform": [{"filter": "datum.Año >= 2015 && datum.Año <= 2024"}],
-          "mark": {
-            "type": "line",
-            "point": {"filled": true, "size": 60, "color": "#E4007C"},
-            "strokeWidth": 3,
-            "color": "#E4007C"
-          },
-          "encoding": {
-            "x": {
-              "field": "Año",
-              "type": "quantitative",
-              "title": "Year",
-              "axis": {
-                "format": "d",
-                "labelFontSize": 10,
-                "titleFontSize": 11,
-                "grid": false
-              }
-            },
-            "y": {
-              "field": "total_crimes",
-              "type": "quantitative",
-              "title": "Total Crimes",
-              "axis": {
-                "labelFontSize": 10,
-                "titleFontSize": 11,
-                "grid": true,
-                "gridColor": "#2E294E",
-                "gridOpacity": 0.1
-              }
-            }
+      "title": {
+        "text": "Kidnapping",
+        "color": "#E4007C"
+      },
+      "width": 250,
+      "height": 180,
+      "data": {
+        "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/kidnappingdata_peryear.csv"
+      },
+      "mark": {
+        "type": "line",
+        "point": {
+          "filled": true,
+          "color": "#E4007C"
+        },
+        "color": "#E4007C"
+      },
+      "encoding": {
+        "x": {
+          "field": "Año",
+          "type": "quantitative",
+          "title": "Year",
+          "axis": {
+            "format": "d"
           }
         },
-        {
-          "width": 280,
-          "height": 200,
-          "title": {"text": "Extortion", "fontSize": 14, "color": "#2E294E"},
-          "data": {
-            "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/extortiondata_peryear.csv"
-          },
-          "transform": [{"filter": "datum.Año >= 2015 && datum.Año <= 2024"}],
-          "mark": {
-            "type": "line",
-            "point": {"filled": true, "size": 60, "color": "#2E294E"},
-            "strokeWidth": 3,
-            "color": "#2E294E"
-          },
-          "encoding": {
-            "x": {
-              "field": "Año",
-              "type": "quantitative",
-              "title": "Year",
-              "axis": {
-                "format": "d",
-                "labelFontSize": 10,
-                "titleFontSize": 11,
-                "grid": false
-              }
-            },
-            "y": {
-              "field": "total_crimes",
-              "type": "quantitative",
-              "title": "Total Crimes",
-              "axis": {
-                "labelFontSize": 10,
-                "titleFontSize": 11,
-                "grid": true,
-                "gridColor": "#2E294E",
-                "gridOpacity": 0.1
-              }
-            }
-          }
+        "y": {
+          "field": "total_crimes",
+          "type": "quantitative",
+          "title": "Total"
         }
-      ]
+      }
     },
     {
-      "hconcat": [
-        {
-          "width": 280,
-          "height": 200,
-          "title": {"text": "Homicide", "fontSize": 14, "color": "#1B998B"},
-          "data": {
-            "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/homicidedata_peryear.csv"
-          },
-          "transform": [{"filter": "datum.Año >= 2015 && datum.Año <= 2024"}],
-          "mark": {
-            "type": "line",
-            "point": {"filled": true, "size": 60, "color": "#1B998B"},
-            "strokeWidth": 3,
-            "color": "#1B998B"
-          },
-          "encoding": {
-            "x": {
-              "field": "Año",
-              "type": "quantitative",
-              "title": "Year",
-              "axis": {
-                "format": "d",
-                "labelFontSize": 10,
-                "titleFontSize": 11,
-                "grid": false
-              }
-            },
-            "y": {
-              "field": "total_crimes",
-              "type": "quantitative",
-              "title": "Total Crimes",
-              "axis": {
-                "labelFontSize": 10,
-                "titleFontSize": 11,
-                "grid": true,
-                "gridColor": "#2E294E",
-                "gridOpacity": 0.1
-              }
-            }
+      "title": {
+        "text": "Extortion",
+        "color": "#2E294E"
+      },
+      "width": 250,
+      "height": 180,
+      "data": {
+        "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/extortiondata_peryear.csv"
+      },
+      "mark": {
+        "type": "line",
+        "point": {
+          "filled": true,
+          "color": "#2E294E"
+        },
+        "color": "#2E294E"
+      },
+      "encoding": {
+        "x": {
+          "field": "Año",
+          "type": "quantitative",
+          "title": "Year",
+          "axis": {
+            "format": "d"
           }
         },
-        {
-          "width": 280,
-          "height": 200,
-          "title": {"text": "Feminicide", "fontSize": 14, "color": "#F1BF3A"},
-          "data": {
-            "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/feminicidedata_peryear.csv"
-          },
-          "transform": [{"filter": "datum.Año >= 2015 && datum.Año <= 2024"}],
-          "mark": {
-            "type": "line",
-            "point": {"filled": true, "size": 60, "color": "#F1BF3A"},
-            "strokeWidth": 3,
-            "color": "#F1BF3A"
-          },
-          "encoding": {
-            "x": {
-              "field": "Año",
-              "type": "quantitative",
-              "title": "Year",
-              "axis": {
-                "format": "d",
-                "labelFontSize": 10,
-                "titleFontSize": 11,
-                "grid": false
-              }
-            },
-            "y": {
-              "field": "total_crimes",
-              "type": "quantitative",
-              "title": "Total Crimes",
-              "axis": {
-                "labelFontSize": 10,
-                "titleFontSize": 11,
-                "grid": true,
-                "gridColor": "#2E294E",
-                "gridOpacity": 0.1
-              }
-            }
-          }
+        "y": {
+          "field": "total_crimes",
+          "type": "quantitative",
+          "title": "Total"
         }
-      ]
+      }
     },
     {
-      "width": 600,
-      "height": 20,
-      "layer": [
-        {
-          "data": {"values": [{}]},
-          "mark": {
-            "type": "text",
-            "align": "left",
-            "baseline": "top",
-            "dx": 5,
-            "fontSize": 10,
-            "color": "#2E294E",
-            "text": "Source:"
+      "title": {
+        "text": "Homicide",
+        "color": "#1B998B"
+      },
+      "width": 250,
+      "height": 180,
+      "data": {
+        "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/homicidedata_peryear.csv"
+      },
+      "mark": {
+        "type": "line",
+        "point": {
+          "filled": true,
+          "color": "#1B998B"
+        },
+        "color": "#1B998B"
+      },
+      "encoding": {
+        "x": {
+          "field": "Año",
+          "type": "quantitative",
+          "title": "Year",
+          "axis": {
+            "format": "d"
           }
         },
-        {
-          "data": {"values": [{}]},
-          "mark": {
-            "type": "text",
-            "align": "left",
-            "baseline": "top",
-            "dx": 47,
-            "fontSize": 10,
-            "fontStyle": "italic",
-            "color": "#2E294E",
-            "text": "Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública de México"
-          }
+        "y": {
+          "field": "total_crimes",
+          "type": "quantitative",
+          "title": "Total"
         }
-      ]
+      }
+    },
+    {
+      "title": {
+        "text": "Feminicide",
+        "color": "#F1BF3A"
+      },
+      "width": 250,
+      "height": 180,
+      "data": {
+        "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/feminicidedata_peryear.csv"
+      },
+      "mark": {
+        "type": "line",
+        "point": {
+          "filled": true,
+          "color": "#F1BF3A"
+        },
+        "color": "#F1BF3A"
+      },
+      "encoding": {
+        "x": {
+          "field": "Año",
+          "type": "quantitative",
+          "title": "Year",
+          "axis": {
+            "format": "d"
+          }
+        },
+        "y": {
+          "field": "total_crimes",
+          "type": "quantitative",
+          "title": "Total"
+        }
+      }
     }
   ],
-  "config": {"view": {"stroke": null}}
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "gridOpacity": 0.1,
+      "gridColor": "#2E294E"
+    }
+  }
 }
