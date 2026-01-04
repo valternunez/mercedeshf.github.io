@@ -1,10 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": "#F5F2EB",
+  "padding": {"left": 10, "top": 10, "right": 10, "bottom": -70},
   "title": {
     "text": "Crime Reality vs. Public Perception in Mexico",
-    "fontSize": 20,
-    "anchor": "middle",
-    "offset": 20
+    "subtitle": "Comparing homicide rates (SESNSP) and perceived insecurity (INEGI). Sources: SESNSP & INEGI",
+    "subtitleColor": "#2E294E",
+    "anchor": "start",
+    "fontSize": 16,
+    "subtitleFontSize": 10,
+    "offset": 15
   },
   "params": [
     {
@@ -21,7 +26,12 @@
   ],
   "hconcat": [
     {
-      "title": "Homicide Rate (per 100k)",
+      "title": {
+        "text": "Homicide Rate (per 100k)",
+        "fontSize": 12,
+        "color": "#2E294E",
+        "anchor": "start"
+      },
       "width": 400,
       "height": 450,
       "data": {
@@ -68,7 +78,12 @@
       }
     },
     {
-      "title": "Perception of Insecurity (%)",
+      "title": {
+        "text": "Perception of Insecurity (%)",
+        "fontSize": 12,
+        "color": "#2E294E",
+        "anchor": "start"
+      },
       "width": 400,
       "height": 450,
       "data": {
@@ -116,5 +131,23 @@
     }
   ],
   "resolve": {"scale": {"color": "independent"}},
-  "config": {"view": {"stroke": null}, "legend": {"gradientLength": 200}}
+  "config": {
+    "view": {"stroke": null},
+    "axis": {
+      "domainColor": "#2E294E",
+      "domainOpacity": 0.3,
+      "tickColor": "#2E294E",
+      "labelColor": "#2E294E",
+      "titleColor": "#2E294E",
+      "labelFontSize": 10,
+      "titleFontSize": 11
+    },
+    "legend": {
+      "titleColor": "#2E294E",
+      "labelColor": "#2E294E",
+      "titleFontSize": 10,
+      "labelFontSize": 9,
+      "gradientLength": 200
+    }
+  }
 }
