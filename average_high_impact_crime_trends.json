@@ -1,0 +1,105 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
+  "description": "Average of high impact crimes",
+  "title": {
+    "text": "Average of 'High Impact' Crimes in Mexico",
+    "subtitle": "Mean total reported cases across all high-impact crime categories, 2015-2024",
+    "subtitleColor": "#2E294E",
+    "fontSize": 18,
+    "font": "sans-serif",
+    "anchor": "start",
+    "offset": 20
+  },
+  "background": "#F5F2EB",
+  "padding": {"left": 10, "right": 10, "top": 10, "bottom": 10},
+  "spacing": 20,
+  "vconcat": [
+    {
+      "width": 800,
+      "height": 400,
+      "data": {
+        "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/crime_data_per_year_national.csv"
+      },
+      "transform": [
+        {"filter": "datum.is_high_impact == 1"},
+        {"filter": "datum.year >= 2015 && datum.year < 2025"},
+        {
+          "aggregate": [{"op": "mean", "field": "total", "as": "avg_total"}],
+          "groupby": ["year"]
+        }
+      ],
+      "mark": {
+        "type": "line",
+        "point": {"filled": true, "size": 80, "color": "#6D6D6D"},
+        "color": "#6D6D6D",
+        "strokeWidth": 3
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "title": "Year",
+          "axis": {
+            "format": "d",
+            "labelFontSize": 11,
+            "titleFontSize": 12,
+            "grid": false
+          }
+        },
+        "y": {
+          "field": "avg_total",
+          "type": "quantitative",
+          "title": "Average Total Crimes",
+          "axis": {
+            "labelFontSize": 11,
+            "titleFontSize": 12,
+            "grid": true,
+            "gridColor": "#2E294E",
+            "gridOpacity": 0.1
+          }
+        },
+        "tooltip": [
+          {"field": "year", "type": "quantitative", "title": "Year"},
+          {
+            "field": "avg_total",
+            "type": "quantitative",
+            "title": "Average Total",
+            "format": ",.0f"
+          }
+        ]
+      }
+    },
+    {
+      "width": 600,
+      "height": 20,
+      "layer": [
+        {
+          "data": {"values": [{}]},
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "dx": -140,
+            "fontSize": 10,
+            "color": "#2E294E",
+            "text": "Source:"
+          }
+        },
+        {
+          "data": {"values": [{}]},
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "top",
+            "dx": -100,
+            "fontSize": 10,
+            "fontStyle": "italic",
+            "color": "#2E294E",
+            "text": "Secretariado Ejecutivo del Sistema Nacional de Seguridad Pública de México, own categorization"
+          }
+        }
+      ]
+    }
+  ],
+  "config": {"view": {"stroke": null}}
+}
