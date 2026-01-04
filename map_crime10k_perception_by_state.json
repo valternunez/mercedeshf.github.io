@@ -1,0 +1,120 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Crime Reality vs. Public Perception in Mexico",
+    "fontSize": 20,
+    "anchor": "middle",
+    "offset": 20
+  },
+  "params": [
+    {
+      "name": "Year_selection",
+      "value": 2024,
+      "bind": {
+        "input": "range",
+        "min": 2015,
+        "max": 2024,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    }
+  ],
+  "hconcat": [
+    {
+      "title": "Homicide Rate (per 100k)",
+      "width": 400,
+      "height": 450,
+      "data": {
+        "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/crime_data_per_year_states_100k.csv"
+      },
+      "transform": [
+        {"filter": "datum.type_of_crime == 'Homicide'"},
+        {"filter": "datum.year == Year_selection"},
+        {
+          "calculate": "datum.state == 'Ciudad de México' ? 'Distrito Federal' : datum.state == 'Querétaro' ? 'Queretaro de Arteaga' : datum.state == 'México' ? 'Mexico' : datum.state == 'Michoacán de Ocampo' ? 'Michoacan de Ocampo' : replace(replace(replace(replace(replace(datum.state, 'á', 'a'), 'é', 'e'), 'í', 'i'), 'ó', 'o'), 'ú', 'u')",
+          "as": "matching_name"
+        },
+        {
+          "lookup": "matching_name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/mexico_states.json",
+              "format": {"type": "topojson", "feature": "mexico_states"}
+            },
+            "key": "properties.shapeName"
+          },
+          "as": "geo"
+        }
+      ],
+      "projection": {"type": "mercator"},
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.5},
+      "encoding": {
+        "shape": {"field": "geo", "type": "geojson"},
+        "color": {
+          "field": "crime_per_100k",
+          "type": "quantitative",
+          "title": "Rate per 100k",
+          "scale": {"scheme": "blueorange", "domain": [0, 130]}
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {
+            "field": "crime_per_100k",
+            "type": "quantitative",
+            "title": "Homicide Rate",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "title": "Perception of Insecurity (%)",
+      "width": 400,
+      "height": 450,
+      "data": {
+        "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/security_perception_state.csv"
+      },
+      "transform": [
+        {"filter": "datum.year == Year_selection"},
+        {"filter": "datum.state != 'Estados Unidos Mexicanos'"},
+        {
+          "calculate": "datum.state == 'Ciudad de México' ? 'Distrito Federal' : datum.state == 'Querétaro' ? 'Queretaro de Arteaga' : datum.state == 'México' ? 'Mexico' : datum.state == 'Michoacán de Ocampo' ? 'Michoacan de Ocampo' : replace(replace(replace(replace(replace(datum.state, 'á', 'a'), 'é', 'e'), 'í', 'i'), 'ó', 'o'), 'ú', 'u')",
+          "as": "matching_name"
+        },
+        {
+          "lookup": "matching_name",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/mercedeshf/mercedeshf.github.io/refs/heads/main/mexico_states.json",
+              "format": {"type": "topojson", "feature": "mexico_states"}
+            },
+            "key": "properties.shapeName"
+          },
+          "as": "geo"
+        }
+      ],
+      "projection": {"type": "mercator"},
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.5},
+      "encoding": {
+        "shape": {"field": "geo", "type": "geojson"},
+        "color": {
+          "field": "insecurity_percentage",
+          "type": "quantitative",
+          "title": "% Feeling Insecure",
+          "scale": {"scheme": "blueorange", "domain": [0, 100]}
+        },
+        "tooltip": [
+          {"field": "state", "type": "nominal", "title": "State"},
+          {
+            "field": "insecurity_percentage",
+            "type": "quantitative",
+            "title": "% Insecure",
+            "format": ".1f"
+          }
+        ]
+      }
+    }
+  ],
+  "resolve": {"scale": {"color": "independent"}},
+  "config": {"view": {"stroke": null}, "legend": {"gradientLength": 200}}
+}
