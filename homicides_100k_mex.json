@@ -11,19 +11,31 @@
     "offset": 20
   },
   "background": "#F5F2EB",
-  "padding": {"left": 10, "right": 10, "top": 10, "bottom": 10},
+  "padding": {
+    "left": 10,
+    "right": 10,
+    "top": 10,
+    "bottom": 10
+  },
   "spacing": 20,
   "vconcat": [
     {
-      "width": 800,
+      "width": 900,
       "height": 400,
       "data": {
         "url": "https://api.worldbank.org/v2/country/mex/indicator/VC.IHR.PSRC.P5?date=1990:2023&format=json",
-        "format": {"type": "json", "property": "1"}
+        "format": {
+          "type": "json",
+          "property": "1"
+        }
       },
       "mark": {
         "type": "line",
-        "point": {"filled": true, "size": 60, "color": "#E4007C"},
+        "point": {
+          "filled": true,
+          "size": 60,
+          "color": "#E4007C"
+        },
         "strokeWidth": 3,
         "color": "#E4007C"
       },
@@ -43,7 +55,12 @@
           "field": "value",
           "type": "quantitative",
           "title": "Rate per 100k",
-          "scale": {"domain": [0, 40]},
+          "scale": {
+            "domain": [
+              0,
+              40
+            ]
+          },
           "axis": {
             "labelFontSize": 10,
             "titleFontSize": 11,
@@ -53,8 +70,15 @@
           }
         },
         "tooltip": [
-          {"field": "date", "title": "Year"},
-          {"field": "value", "title": "Homicide Rate", "format": ".2f"}
+          {
+            "field": "date",
+            "title": "Year"
+          },
+          {
+            "field": "value",
+            "title": "Homicide Rate",
+            "format": ".2f"
+          }
         ]
       }
     },
@@ -63,7 +87,11 @@
       "height": 0,
       "layer": [
         {
-          "data": {"values": [{}]},
+          "data": {
+            "values": [
+              {}
+            ]
+          },
           "mark": {
             "type": "text",
             "align": "left",
@@ -77,5 +105,9 @@
       ]
     }
   ],
-  "config": {"view": {"stroke": null}}
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
 }
